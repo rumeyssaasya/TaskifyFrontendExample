@@ -1,0 +1,8 @@
+import { useEffect, useState } from "react";
+import api from "../../api/axios";
+
+interface Task {
+    project
+    title
+    completed
+}
