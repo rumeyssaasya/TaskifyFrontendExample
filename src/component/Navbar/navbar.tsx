@@ -1,16 +1,37 @@
 import { useNavigate } from "react-router-dom";
+import "./navbar.css";
+
 function Navbar() {
   const navigate = useNavigate();
   const handleLogout = () => {
-    localStorage.removeItem("token"); // Token'ı temizle
-    navigate("/auth/login"); // Login sayfasına yönlendir
+    localStorage.removeItem("token");
+    navigate("/auth/login");
   };
+  
   return (
-    <div>
-        <button type="button" onClick={() => navigate("/projects")}>ProjeLerim</button>
-        <button type="button" onClick={() => navigate("/tasks")}>Görevlerim</button>
-        <button type="button" onClick={handleLogout}>çıkış yap</button>
-    </div>  )
+    <nav className="navbar">
+      <div className="navbar-container">
+        <a href="/projects" className="navbar-brand">Taskify</a>
+        <ul className="navbar-menu">
+          <li>
+            <button className="navbar-item" onClick={() => navigate("/projects")}>
+              Projelerim
+            </button>
+          </li>
+          <li>
+            <button className="navbar-item" onClick={() => navigate("/tasks")}>
+              Görevlerim
+            </button>
+          </li>
+          <li>
+            <button className="logout-btn" onClick={handleLogout}>
+              Çıkış Yap
+            </button>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  );
 }
 
-export default Navbar
+export default Navbar;
