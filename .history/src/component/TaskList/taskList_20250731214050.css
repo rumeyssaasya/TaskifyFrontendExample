@@ -1,0 +1,148 @@
+.task-list-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.task-list-title {
+    color: #2c3e50;
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 1.5rem;
+}
+
+.no-tasks-message {
+    text-align: center;
+    color: #7f8c8d;
+    font-style: italic;
+    padding: 20px;
+}
+
+.tasks-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.task-card {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.task-card:hover {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    transform: translateY(-2px);
+}
+
+.task-content {
+    flex: 1;
+    min-width: 200px;
+}
+
+.task-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #3d296c;
+    margin: 0 0 8px 0;
+    line-height: 1.4;
+}
+
+.task-description {
+    color: #666;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin: 0 0 12px 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.task-actions {
+    display: flex;
+    gap: 12px;
+    margin-left: auto;
+}
+
+.edit-button,
+.delete-button {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 80px;
+}
+
+.edit-button {
+    background: #e3f2fd;
+    color: #1976d2;
+}
+
+.edit-button:hover {
+    background: #1976d2;
+    color: white;
+}
+
+.delete-button {
+    background: #ffebee;
+    color: #d32f2f;
+}
+
+.delete-button:hover {
+    background: #d32f2f;
+    color: white;
+}
+
+.task-status {
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    display: inline-block;
+}
+
+.task-status.todo {
+    background: #fff3cd;
+    color: #856404;
+}
+
+.task-status.in-progress {
+    background: #d1ecf1;
+    color: #0c5460;
+}
+
+.task-status.done {
+    background: #d4edda;
+    color: #155724;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+    .task-card {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .task-actions {
+        margin-left: 0;
+        margin-top: 12px;
+        width: 100%;
+        justify-content: flex-end;
+    }
+}

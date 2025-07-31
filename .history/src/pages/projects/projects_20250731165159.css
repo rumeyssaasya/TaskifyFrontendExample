@@ -1,0 +1,147 @@
+/* Ana Sayfa Düzeni */
+.projects-page {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background: #f8f9fa;
+    position: relative;
+}
+
+/* Ana İçerik Sarmalayıcı */
+.main-wrapper {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Sidebar Stilleri */
+.projects-sidebar {
+    width: 280px;
+    min-width: 280px;
+    background: white;
+    border-right: 1px solid #e1e5e9;
+    padding: 24px;
+    overflow-y: auto;
+    box-shadow: 2px 0 8px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    height: 100%;
+    z-index: 10;
+}
+
+.projects-sidebar.closed {
+    transform: translateX(-100%);
+    width: 280px;
+    min-width: 0;
+    padding: 0;
+    overflow: hidden;
+    position: absolute;
+}
+
+/* Sidebar Toggle Butonu */
+.sidebar-toggle-btn {
+    position: absolute;
+    left: 280px;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    color: #666;
+    border: 1px solid #e1e5e9;
+    border-left: none;
+    border-radius: 0 6px 6px 0;
+    width: 20px;
+    height: 60px;
+    font-size: 12px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
+    z-index: 20;
+}
+
+.sidebar-toggle-btn.closed {
+    left: 0;
+    border-left: 1px solid #e1e5e9;
+    border-right: none;
+    border-radius: 6px 0 0 6px;
+}
+
+.sidebar-toggle-btn:hover {
+    background: #f8f9fa;
+    color: #333;
+    transform: translate(-50%, -50%) scale(1.05);
+}
+
+/* İçerik Alanı */
+.projects-content {
+    flex: 1;
+    background: #f8f9fa;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+/* Header Stilleri */
+.content-header {
+    background: white;
+    padding: 0 24px;
+    border-bottom: 1px solid #e1e5e9;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    height: 60px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+}
+
+.page-title {
+    background: white;
+    text-align: left;
+    padding: 6%;
+}
+
+/* Ana İçerik Bölümü */
+.content-body {
+    padding: 10px;
+    flex: 1;
+    overflow-y: auto;
+}
+
+/* Responsive Düzen */
+@media (max-width: 768px) {
+    .projects-sidebar {
+        position: absolute;
+        width: 100%;
+        max-width: 280px;
+        height: 100%;
+        z-index: 100;
+    }
+
+    .projects-sidebar.closed {
+        transform: translateX(-100%);
+    }
+
+    .sidebar-toggle-btn {
+        left: auto;
+        right: -20px;
+        top: 20px;
+        transform: none;
+        border-radius: 6px 0 0 6px;
+    }
+
+    .sidebar-toggle-btn.closed {
+        left: 10px;
+        right: auto;
+        border-radius: 6px;
+    }
+
+    .content-header {
+        padding: 0 16px;
+    }
+
+    .content-body {
+        padding: 16px;
+    }
+}
