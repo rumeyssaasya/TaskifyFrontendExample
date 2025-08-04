@@ -88,6 +88,17 @@ const Tasks = () => {
         {loading && <div className="loading-indicator">Yükleniyor...</div>}
 
         <div className="task-views">
+          {/* Liste Görünümü */}
+          <div className="list-view">
+            <TaskList 
+              project={null}
+              tasks={tasks}
+              fetchTasks={fetchTasks}
+              onDragStart={handleDragStart}
+              onStatusChange={handleDrop}
+            />
+          </div>
+
           {/* Kanban Görünümü */}
           <div className="kanban-view">
             {statusColumns.map(column => (

@@ -51,7 +51,7 @@ const TaskList: React.FC<TaskListProps> = ({
 
   return (
     <div className="task-list-container">
-      <h2 className="task-list-title">{project?.name}</h2>
+      <h2 className="task-list-title">{project?.name || "Tüm Görevler"}</h2>
       
       {filteredTasks.length === 0 ? (
         <p className="no-tasks-message">Görev bulunamadı.</p>
@@ -66,9 +66,6 @@ const TaskList: React.FC<TaskListProps> = ({
             >
               <div className="task-header">
                 <h3 className="task-title">{task.title}</h3>
-                <div>
-                <p className="task-description">{task.description}</p>
-                </div>
                 <div className="task-actions">
                   <button 
                     onClick={() => setEditingTask(task)}
@@ -84,7 +81,20 @@ const TaskList: React.FC<TaskListProps> = ({
                   </button>
                 </div>
               </div>
+              <p className="task-description">{task.description}</p>
               
+              <select
+                value={task.status}
+                onChange={(e) => onStatusChange?.(e.target.value)}
+                onClick={(e) => e.stopPropagation()}
+                className="status-selector"
+              >
+                {statusOptions.map(option => (
+                  <option key={option.value} value={option.value}>
+                    {option.label}
+                  </option>
+                ))}
+              </select>
             </div>
           ))}
         </div>

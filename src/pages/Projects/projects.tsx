@@ -38,7 +38,7 @@ const Projects: React.FC = () => {
   const selectedProject = useMemo(
     () => projects.find((p) => p.id === selectedProjectId) ?? null,
     [projects, selectedProjectId]
-  ); // 🆕 artık her render’da tekrar .find etmeyecek
+  ); // 🆕 artık her render'da tekrar .find etmeyecek
 
   /* --------- HANDLERS --------- */
   const handleProjectCreated = (newProject: Project) => {
@@ -50,6 +50,24 @@ const Projects: React.FC = () => {
   const handleProjectClick = (id: number) => {
     setSelectedProjectId(id);
     setShowCreateForm(false);
+  };
+
+  const handleProjectUpdated = (updatedProject: Project) => {
+    setProjects((prev) => 
+      prev.map((p) => p.id === updatedProject.id ? updatedProject : p)
+    );
+    // Eğer düzenlenen proje seçili projeyse, seçili projeyi güncelle
+    if (selectedProjectId === updatedProject.id) {
+      setSelectedProjectId(updatedProject.id);
+    }
+  };
+
+  const handleProjectDeleted = (projectId: number) => {
+    setProjects((prev) => prev.filter((p) => p.id !== projectId));
+    // Eğer silinen proje seçili projeyse, seçili projeyi temizle
+    if (selectedProjectId === projectId) {
+      setSelectedProjectId(null);
+    }
   };
 
   const handleAddProjectClick = () => {
@@ -90,6 +108,8 @@ const Projects: React.FC = () => {
           projects={projects}
           selectedProjectId={selectedProjectId}
           onDetailClick={handleProjectClick}
+          onProjectUpdated={handleProjectUpdated}
+          onProjectDeleted={handleProjectDeleted}
         />
       </div>
 

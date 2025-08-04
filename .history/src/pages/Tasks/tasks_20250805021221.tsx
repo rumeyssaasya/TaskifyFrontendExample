@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import Navbar from "../../component/Navbar/navbar";
-import TaskList from "../../component/TaskList/taskList";
+import TaskList from "../../component/TaskList/taskList"; // TaskList import ediliyor
 import CreateTask from "../../component/CreateTask/createTask";
 import api from "../../api/axios";
 import "./tasks.css";
@@ -11,19 +11,13 @@ const Tasks = () => {
   const [showCreateTaskForm, setShowCreateTaskForm] = useState(false);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [draggedTask, setDraggedTask] = useState<Task | null>(null);
-
-  const statusColumns = [
-    { id: "todo", title: "Yapılacak", status: "TO_DO" },
-    { id: "in-progress", title: "Yapılıyor", status: "IN_PROGRESS" },
-    { id: "done", title: "Tamamlandı", status: "DONE" }
-  ];
 
   const fetchTasks = async () => {
     try {
       setLoading(true);
       const response = await api.get<Task[]>("/tasks");
-      setTasks(response.data);
+      // API'dan gelen tüm görevler
+      setTasks(response.data); 
       setError(null);
     } catch (err) {
       console.error("Görevler alınamadı:", err);
@@ -40,26 +34,6 @@ const Tasks = () => {
   const handleTaskCreated = async () => {
     setShowCreateTaskForm(false);
     await fetchTasks();
-  };
-
-  // Sürükle-bırak fonksiyonları
-  const handleDragStart = (task: Task) => {
-    setDraggedTask(task);
-  };
-
-  const handleDrop = async (newStatus: string) => {
-    if (!draggedTask || draggedTask.status === newStatus) return;
-
-    try {
-      await api.put(`/tasks/${draggedTask.id}`, {
-        ...draggedTask,
-        status: newStatus
-      });
-      fetchTasks();
-    } catch (err) {
-      console.error("Durum güncellenemedi:", err);
-      setError("Görev durumu değiştirilemedi");
-    }
   };
 
   return (
@@ -87,27 +61,12 @@ const Tasks = () => {
         {error && <div className="error-message">{error}</div>}
         {loading && <div className="loading-indicator">Yükleniyor...</div>}
 
-        <div className="task-views">
-          {/* Kanban Görünümü */}
-          <div className="kanban-view">
-            {statusColumns.map(column => (
-              <div 
-                key={column.id}
-                className="status-column"
-                onDragOver={(e) => e.preventDefault()}
-                onDrop={() => handleDrop(column.status)}
-              >
-                <h3>{column.title}</h3>
-                <TaskList
-                  project={null}
-                  tasks={tasks.filter(t => t.status === column.status)}
-                  fetchTasks={fetchTasks}
-                  onDragStart={handleDragStart}
-                />
-              </div>
-            ))}
-          </div>
-        </div>
+        {/* TaskList bileşeni ile proje atanmamış görevleri göster */}
+        <TaskList 
+          project={null} 
+          tasks={tasks} 
+          fetchTasks={fetchTasks} 
+        />
       </div>
     </div>
   );

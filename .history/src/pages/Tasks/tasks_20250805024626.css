@@ -142,6 +142,11 @@
     cursor: grabbing;
 }
 
+/* Task Header Styles */
+/* Task Card Layout */
+
+
+/* Header - Top Section */
 .task-header {
     display: flex;
     flex-direction: column;
@@ -150,28 +155,26 @@
 
 /* Title - Middle Section */
 .task-title {
-    margin: 0;
+    margin: 0.5rem 0;
     font-size: 1rem;
     font-weight: 600;
     color: #2d3748;
+    flex-grow: 1;
     word-break: break-word;
-    flex: 1;
 }
 
-/* Description - Middle Section (Tüm içerik görünecek şekilde) */
+/* Description - Middle Section */
 .task-description {
     margin: 0.5rem 0;
     color: #4a5568;
     font-size: 0.875rem;
     line-height: 1.5;
-    word-break: break-word;
-    /* Uzun kelimeleri satır sonunda böler */
-    white-space: pre-line;
-    /* Yeni satırları korur ve metni kaydırır */
-    overflow: visible;
-    /* Taşan içeriği kesme */
     flex-grow: 1;
-    /* Kalan alanı doldurur */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
 }
 
 /* Actions - Bottom Right Section */
@@ -179,11 +182,10 @@
     display: flex;
     justify-content: flex-end;
     gap: 0.5rem;
-    margin-top: 0.5rem;
-    margin-left: 67%;
+    margin-top: auto;
+    padding-top: 0.5rem;
 }
 
-/* Buton stilleri (aynı kaldı) */
 .edit-task-btn,
 .delete-task-btn {
     background: none;
@@ -191,8 +193,8 @@
     width: 28px;
     height: 28px;
     display: flex;
-    margin-left: auto;
-    /* Bu satırı ekleyerek butonları sağa hizalıyoruz */
+    align-items: center;
+    justify-content: center;
     border-radius: 6px;
     cursor: pointer;
     color: #718096;

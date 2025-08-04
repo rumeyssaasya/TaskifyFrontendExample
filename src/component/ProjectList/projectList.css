@@ -16,6 +16,9 @@
     user-select: none;
     position: relative;
     overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .project-item::before {
@@ -57,6 +60,11 @@
     transform: translateX(4px);
 }
 
+.project-content {
+    flex: 1;
+    cursor: pointer;
+}
+
 .project-name {
     font-weight: inherit;
     margin: 0;
@@ -73,4 +81,72 @@
 
 .project-item.selected:hover .project-name {
     color: white;
+}
+
+.project-actions {
+    display: flex;
+    gap: 6px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.project-item:hover .project-actions {
+    opacity: 1;
+}
+
+.project-item.selected .project-actions {
+    opacity: 1;
+}
+
+.edit-btn,
+.delete-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 6px;
+    border-radius: 50%;
+    font-size: 16px;
+    transition: all 0.2s ease;
+    color: inherit;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 32px;
+    min-height: 32px;
+}
+
+.edit-btn {
+    color: #677ae6;
+}
+
+.edit-btn:hover {
+    background: rgba(103, 122, 230, 0.1);
+    transform: scale(1.1);
+}
+
+.delete-btn {
+    color: #f44336;
+}
+
+.delete-btn:hover {
+    background: rgba(244, 67, 54, 0.1);
+    transform: scale(1.1);
+}
+
+.project-item.selected .edit-btn {
+    color: white;
+}
+
+.project-item.selected .delete-btn {
+    color: white;
+}
+
+.project-item.selected .edit-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.project-item.selected .delete-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
 }

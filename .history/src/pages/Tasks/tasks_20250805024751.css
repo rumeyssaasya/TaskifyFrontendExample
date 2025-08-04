@@ -142,9 +142,15 @@
     cursor: grabbing;
 }
 
+/* Task Header Styles */
+/* Task Card Layout */
+
+
+/* Header - Top Section */
+/* Header - Top Section */
 .task-header {
     display: flex;
-    flex-direction: column;
+    justify-content: space-between;
     margin-bottom: 0.5rem;
 }
 
@@ -180,7 +186,6 @@
     justify-content: flex-end;
     gap: 0.5rem;
     margin-top: 0.5rem;
-    margin-left: 67%;
 }
 
 /* Buton stilleri (aynı kaldı) */
@@ -191,8 +196,8 @@
     width: 28px;
     height: 28px;
     display: flex;
-    margin-left: auto;
-    /* Bu satırı ekleyerek butonları sağa hizalıyoruz */
+    align-items: center;
+    justify-content: center;
     border-radius: 6px;
     cursor: pointer;
     color: #718096;

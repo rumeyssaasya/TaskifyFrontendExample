@@ -8,7 +8,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1000;
+  z-index: 99999;
   backdrop-filter: blur(2px);
   animation: fadeIn 0.3s ease;
 }
@@ -27,11 +27,13 @@
   background-color: white;
   padding: 24px;
   border-radius: 12px;
-  max-width: 500px;
+  max-width: 480px;
   width: 90%;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  max-height: 85vh;
+  overflow-y: auto;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.15);
   position: relative;
-  z-index: 1001;
+  z-index: 100000;
   animation: slideUp 0.3s ease;
 }
 
@@ -52,12 +54,15 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #e1e5e9;
 }
 
 .modal-header h2 {
   margin: 0;
   color: #2c3e50;
   font-size: 1.5rem;
+  font-weight: 600;
 }
 
 .close-button {
@@ -66,13 +71,20 @@
   font-size: 1.8rem;
   cursor: pointer;
   color: #7f8c8d;
-  padding: 0 8px;
+  padding: 4px 8px;
   line-height: 1;
   transition: color 0.2s ease;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .close-button:hover {
   color: #2c3e50;
+  background-color: #f8f9fa;
 }
 
 .close-button:disabled {
@@ -86,9 +98,10 @@
 
 .form-group label {
   display: block;
-  margin-bottom: 8px;
-  font-weight: 500;
+  margin-bottom: 6px;
+  font-weight: 600;
   color: #2c3e50;
+  font-size: 0.9rem;
 }
 
 .form-group label::after {
@@ -98,51 +111,58 @@
   opacity: 0;
 }
 
-.form-group label[for="project-name"]::after {
+.form-group label[for="title"]::after {
   opacity: 1;
 }
 
 .form-input {
   width: 100%;
-  padding: 12px;
-  border: 1px solid #e1e5e9;
+  padding: 12px 14px;
+  border: 2px solid #e1e5e9;
   border-radius: 8px;
   font-size: 1rem;
   transition: all 0.3s ease;
   box-sizing: border-box;
   font-family: inherit;
+  background-color: #fff;
 }
 
 .form-input:focus {
   outline: none;
   border-color: #1976d2;
-  box-shadow: 0 0 0 2px rgba(25, 118, 210, 0.2);
+  box-shadow: 0 0 0 3px rgba(25, 118, 210, 0.1);
+  background-color: #fff;
+}
+
+.form-input::placeholder {
+  color: #9ca3af;
 }
 
 textarea.form-input {
   resize: vertical;
   min-height: 100px;
+  line-height: 1.5;
 }
 
 .char-counter {
   text-align: right;
   font-size: 0.8rem;
   color: #7f8c8d;
-  margin-top: 4px;
+  margin-top: 6px;
 }
 
 .error-message {
   color: #d32f2f;
   background-color: #ffebee;
-  padding: 12px;
-  border-radius: 8px;
-  margin: 16px 0;
+  padding: 16px;
+  border-radius: 10px;
+  margin: 20px 0;
   font-size: 0.9rem;
+  border-left: 4px solid #d32f2f;
   animation: shake 0.5s ease;
 }
 
 @keyframes shake {
-
   0%,
   100% {
     transform: translateX(0);
@@ -164,6 +184,8 @@ textarea.form-input {
   gap: 12px;
   justify-content: flex-end;
   margin-top: 24px;
+  padding-top: 16px;
+  border-top: 1px solid #e1e5e9;
 }
 
 .btn {
@@ -172,12 +194,13 @@ textarea.form-input {
   border-radius: 8px;
   font-weight: 600;
   cursor: pointer;
-  font-size: 1rem;
+  font-size: 0.95rem;
   transition: all 0.3s ease;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   min-width: 100px;
+  min-height: 40px;
 }
 
 .btn-primary {
@@ -187,32 +210,40 @@ textarea.form-input {
 
 .btn-primary:hover {
   background: #1565c0;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(25, 118, 210, 0.3);
 }
 
 .btn-primary:disabled {
   background: #90caf9;
   cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
 }
 
 .btn-secondary {
   background: #f5f5f5;
   color: #2c3e50;
+  border: 2px solid #e1e5e9;
 }
 
 .btn-secondary:hover {
   background: #e0e0e0;
+  border-color: #bdbdbd;
+  transform: translateY(-1px);
 }
 
 .btn-secondary:disabled {
   background: #f5f5f5;
   color: #bdbdbd;
   cursor: not-allowed;
+  transform: none;
 }
 
 .spinner {
   display: inline-block;
-  width: 16px;
-  height: 16px;
+  width: 18px;
+  height: 18px;
   border: 2px solid rgba(255, 255, 255, 0.3);
   border-radius: 50%;
   border-top-color: white;
@@ -226,17 +257,43 @@ textarea.form-input {
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 768px) {
   .modal {
-    padding: 16px;
+    padding: 20px;
+    width: 95%;
+    max-height: 90vh;
+  }
+
+  .modal-header h2 {
+    font-size: 1.4rem;
   }
 
   .modal-actions {
     flex-direction: column-reverse;
-    gap: 8px;
+    gap: 10px;
   }
 
   .btn {
     width: 100%;
+    min-width: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .modal {
+    padding: 16px;
+    width: 98%;
+  }
+
+  .modal-header {
+    margin-bottom: 16px;
+  }
+
+  .form-group {
+    margin-bottom: 16px;
+  }
+
+  .form-input {
+    padding: 10px 12px;
   }
 }

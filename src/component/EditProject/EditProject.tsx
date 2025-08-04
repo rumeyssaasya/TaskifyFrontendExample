@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import api from '../../api/axios';
 import './EditProject.css';
 import type { Project } from '../../types';
+import ReactDOM from 'react-dom';
 
 interface EditProjectProps {
   project: Project;
@@ -10,6 +11,15 @@ interface EditProjectProps {
 }
 
 const EditProject: React.FC<EditProjectProps> = ({ project, onSave, onCancel }) => {
+  useEffect(() => {
+    // Modal açıldığında
+    document.body.style.overflow = 'hidden';
+    return () => {
+      // Modal kapanınca
+      document.body.style.overflow = '';
+    };
+  }, []);
+
   const [formData, setFormData] = useState({
     title: project.projectName,
     description: project.description || ''
@@ -43,54 +53,96 @@ const EditProject: React.FC<EditProjectProps> = ({ project, onSave, onCancel }) 
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  return (
+  // Close modal when pressing Escape key
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        onCancel();
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [onCancel]);
+
+  return ReactDOM.createPortal((
     <div className="modal-overlay" onClick={onCancel}>
       <div className="modal" onClick={(e) => e.stopPropagation()}>
-        <h2>Projeyi Düzenle</h2>
+        <div className="modal-header">
+          <h2>Projeyi Düzenle</h2>
+          <button 
+            className="close-button" 
+            onClick={onCancel}
+            aria-label="Kapat"
+            disabled={loading}
+          >
+            &times;
+          </button>
+        </div>
+        
         <form onSubmit={handleSubmit}>
           <div className="form-group">
-            <label>Proje Adı</label>
+            <label htmlFor="title">Proje Adı*</label>
             <input
+              id="title"
               name="title"
+              className="form-input"
+              type="text"
               value={formData.title}
               onChange={handleChange}
+              placeholder="Proje adı"
               required
               disabled={loading}
+              maxLength={100}
             />
           </div>
           
           <div className="form-group">
-            <label>Açıklama</label>
+            <label htmlFor="description">Açıklama</label>
             <textarea
+              id="description"
               name="description"
+              className="form-input"
+              placeholder="Proje açıklaması"
               value={formData.description}
               onChange={handleChange}
               disabled={loading}
               rows={4}
+              maxLength={255}
             />
           </div>
           
-          {error && <div className="error-message">{error}</div>}
+          {error && (
+            <div className="error-message">
+              <span role="alert">{error}</span>
+            </div>
+          )}
           
           <div className="modal-actions">
             <button 
               type="button" 
-              onClick={onCancel}
+              className="btn btn-secondary" 
+              onClick={onCancel} 
               disabled={loading}
             >
               İptal
             </button>
             <button 
               type="submit" 
+              className="btn btn-primary" 
               disabled={loading}
             >
-              {loading ? 'Kaydediliyor...' : 'Kaydet'}
+              {loading ? (
+                <>
+                  <span className="spinner"></span> Kaydediliyor...
+                </>
+              ) : 'Kaydet'}
             </button>
           </div>
         </form>
       </div>
     </div>
-  );
+  ), document.body);
 };
 
 export default EditProject;

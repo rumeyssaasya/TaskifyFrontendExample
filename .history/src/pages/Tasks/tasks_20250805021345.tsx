@@ -42,20 +42,26 @@ const Tasks = () => {
     await fetchTasks();
   };
 
-  // Sürükle-bırak fonksiyonları
-  const handleDragStart = (task: Task) => {
+  // Sürükleme işlemleri
+  const handleDragStart = (e: React.DragEvent, task: Task) => {
     setDraggedTask(task);
+    e.dataTransfer.effectAllowed = "move";
   };
 
-  const handleDrop = async (newStatus: string) => {
-    if (!draggedTask || draggedTask.status === newStatus) return;
+  const handleDragOver = (e: React.DragEvent) => {
+    e.preventDefault();
+    e.dataTransfer.dropEffect = "move";
+  };
+
+  const handleDrop = async (status: "TO_DO" | "IN_PROGRESS" | "DONE") => {
+    if (!draggedTask || draggedTask.status === status) return;
 
     try {
       await api.put(`/tasks/${draggedTask.id}`, {
         ...draggedTask,
-        status: newStatus
+        status
       });
-      fetchTasks();
+      await fetchTasks(); // Görevleri yeniden çek
     } catch (err) {
       console.error("Durum güncellenemedi:", err);
       setError("Görev durumu değiştirilemedi");
@@ -64,50 +70,25 @@ const Tasks = () => {
 
   return (
     <div className="tasks-page">
-      <div className="tasks-header">
-        <Navbar />
-        <div className="tasks-title-section">
-          <h1 className="tasks-title">Görevlerim</h1>
-          <button
-            className={`add-task-btn ${showCreateTaskForm ? 'close' : ''}`}
-            onClick={() => setShowCreateTaskForm(!showCreateTaskForm)}
+      {/* ... Diğer JSX kodu aynı kalıyor ... */}
+      
+      <div className="kanban-view">
+        {statusColumns.map(column => (
+          <div 
+            key={column.id}
+            className="status-column"
+            onDragOver={handleDragOver}
+            onDrop={() => handleDrop(column.status)}
           >
-            {showCreateTaskForm ? "×" : "+"}
-          </button>
-        </div>
-      </div>
-
-      <div className="tasks-content">
-        {showCreateTaskForm && (
-          <div className="create-task-container">
-            <CreateTask projectId={null} onTaskCreated={handleTaskCreated} />
+            <h3>{column.title}</h3>
+            <TaskList
+              project={null}
+              tasks={tasks.filter(t => t.status === column.status)}
+              fetchTasks={fetchTasks}
+              onDragStart={handleDragStart}
+            />
           </div>
-        )}
-
-        {error && <div className="error-message">{error}</div>}
-        {loading && <div className="loading-indicator">Yükleniyor...</div>}
-
-        <div className="task-views">
-          {/* Kanban Görünümü */}
-          <div className="kanban-view">
-            {statusColumns.map(column => (
-              <div 
-                key={column.id}
-                className="status-column"
-                onDragOver={(e) => e.preventDefault()}
-                onDrop={() => handleDrop(column.status)}
-              >
-                <h3>{column.title}</h3>
-                <TaskList
-                  project={null}
-                  tasks={tasks.filter(t => t.status === column.status)}
-                  fetchTasks={fetchTasks}
-                  onDragStart={handleDragStart}
-                />
-              </div>
-            ))}
-          </div>
-        </div>
+        ))}
       </div>
     </div>
   );

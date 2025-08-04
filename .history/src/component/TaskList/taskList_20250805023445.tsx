@@ -66,9 +66,7 @@ const TaskList: React.FC<TaskListProps> = ({
             >
               <div className="task-header">
                 <h3 className="task-title">{task.title}</h3>
-                <div>
                 <p className="task-description">{task.description}</p>
-                </div>
                 <div className="task-actions">
                   <button 
                     onClick={() => setEditingTask(task)}

@@ -11,24 +11,16 @@ interface TaskListProps {
   } | null;
   tasks: Task[];
   fetchTasks?: () => void;
-  onDragStart?: (task: Task) => void;
-  onStatusChange?: (newStatus: string) => void;
 }
 
-const TaskList: React.FC<TaskListProps> = ({ 
-  project = null, 
-  tasks = [], 
-  fetchTasks,
-  onDragStart,
-  onStatusChange
-}) => {
+const TaskList: React.FC<TaskListProps> = ({ project = null, tasks = [], fetchTasks }) => {
   const [editingTask, setEditingTask] = useState<Task | null>(null);
   const [deletingTask, setDeletingTask] = useState<Task | null>(null);
   const [filteredTasks, setFilteredTasks] = useState<Task[]>([]);
 
   useEffect(() => {
     const filtered = tasks.filter(task => 
-      project ? task.project?.id === project.id : !task.project
+      project ? task.project?.id === project.id : !task.project?.id
     );
     setFilteredTasks(filtered);
   }, [tasks, project]);
@@ -43,48 +35,49 @@ const TaskList: React.FC<TaskListProps> = ({
     fetchTasks?.();
   };
 
-  const statusOptions = [
-    { value: "TO_DO", label: "Yapılacak" },
-    { value: "IN_PROGRESS", label: "Yapılıyor" },
-    { value: "DONE", label: "Tamamlandı" }
-  ];
+  const getStatusText = (status: string) => {
+    switch(status) {
+      case 'TO_DO': return 'Yapılacak';
+      case 'IN_PROGRESS': return 'Yapılıyor';
+      case 'DONE': return 'Tamamlandı';
+      default: return status;
+    }
+  };
 
   return (
     <div className="task-list-container">
-      <h2 className="task-list-title">{project?.name}</h2>
+      <h2 className="task-list-title">{project?.name || "Tüm Görevler"}</h2>
       
       {filteredTasks.length === 0 ? (
         <p className="no-tasks-message">Görev bulunamadı.</p>
       ) : (
         <div className="tasks-wrapper">
           {filteredTasks.map(task => (
-            <div
-              key={task.id}
-              className="task-card"
-              draggable
-              onDragStart={() => onDragStart?.(task)}
-            >
-              <div className="task-header">
+            <div key={task.id} className="task-card">
+              <div className="task-card-header">
                 <h3 className="task-title">{task.title}</h3>
-                <div>
-                <p className="task-description">{task.description}</p>
-                </div>
-                <div className="task-actions">
-                  <button 
-                    onClick={() => setEditingTask(task)}
-                    className="edit-button"
-                  >
-                    Düzenle
-                  </button>
-                  <button
-                    onClick={() => setDeletingTask(task)}
-                    className="delete-button"
-                  >
-                    Sil
-                  </button>
-                </div>
+                <span className={`task-status ${task.status.toLowerCase().replace('_', '-')}`}>
+                  {getStatusText(task.status)}
+                </span>
               </div>
+              <p className="task-description">{task.description}</p>
               
+              <div className="task-actions">
+                <button 
+                  onClick={() => setEditingTask(task)}
+                  className="edit-button"
+                  aria-label="Görevi düzenle"
+                >
+                  Düzenle
+                </button>
+                <button
+                  onClick={() => setDeletingTask(task)}
+                  className="delete-button"
+                  aria-label="Görevi sil"
+                >
+                  Sil
+                </button>
+              </div>
             </div>
           ))}
         </div>
