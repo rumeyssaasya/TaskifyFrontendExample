@@ -1,0 +1,183 @@
+// src/pages/Projects.tsx
+import React, { useEffect, useState, useMemo } from "react";
+import api from "../../api/axios";
+import Navbar from "../../component/Navbar/navbar";
+import ProjectList from "../../component/ProjectList/projectList";
+import CreateProject from "../../component/CreateProject/createProject";
+import ProjectDetail from "../../component/ProjectDetails/projectDetail";
+import TaskList from "../../component/TaskList/taskList";
+import "./projects.css";
+import type { Project, Task } from "../../types";
+
+const Projects: React.FC = () => {
+  const [projects, setProjects] = useState<Project[]>([]);
+  const [selectedProjectId, setSelectedProjectId] = useState<number | null>(null);
+  const [showCreateForm, setShowCreateForm] = useState(false);
+  const [sidebarOpen, setSidebarOpen] = useState(true);
+
+  const [showTaskList, setShowTaskList] = useState(false);
+  const [tasks, setTasks] = useState<Task[]>([]);
+
+  /* --------- DATA FETCH --------- */
+  useEffect(() => {
+    const fetchProjects = async () => {
+      try {
+        const { data } = await api.get<Project[]>("/projects");
+        setProjects(data);
+      } catch (err) {
+        console.error("Projeler yüklenemedi:", err);
+      }
+    };
+    fetchProjects();
+  }, []);
+
+  /* --------- AUTO‑SELECT FIRST PROJECT --------- */
+  useEffect(() => {
+    if (projects.length && selectedProjectId === null && !showCreateForm) {
+      setSelectedProjectId(projects[0].id);
+    }
+  }, [projects, selectedProjectId, showCreateForm]);
+
+  /* --------- MEMOIZED SELECTED PROJECT --------- */
+  const selectedProject = useMemo(
+    () => projects.find((p) => p.id === selectedProjectId) ?? null,
+    [projects, selectedProjectId]
+  );
+
+  /* --------- FETCH TASKS WHEN PROJECT OR TASKLIST TOGGLE CHANGES --------- */
+  useEffect(() => {
+    if (showTaskList && selectedProjectId) {
+      api.get<Task[]>(`/projects/${selectedProjectId}/tasks`)
+        .then(res => setTasks(res.data))
+        .catch(() => setTasks([]));
+    } else {
+      setTasks([]);
+    }
+  }, [showTaskList, selectedProjectId]);
+
+  /* --------- HANDLERS --------- */
+  const handleProjectCreated = (newProject: Project) => {
+    setProjects((prev) => [...prev, newProject]);
+    setShowCreateForm(false);
+    setSelectedProjectId(newProject.id);
+    setShowTaskList(false);
+  };
+
+  const handleProjectClick = (id: number) => {
+    setSelectedProjectId(id);
+    setShowCreateForm(false);
+    setShowTaskList(false);
+  };
+
+  const handleProjectUpdated = (updatedProject: Project) => {
+    setProjects((prev) =>
+      prev.map((p) => (p.id === updatedProject.id ? updatedProject : p))
+    );
+    if (selectedProjectId === updatedProject.id) {
+      setSelectedProjectId(updatedProject.id);
+    }
+  };
+
+  const handleProjectDeleted = (projectId: number) => {
+    setProjects((prev) => prev.filter((p) => p.id !== projectId));
+    if (selectedProjectId === projectId) {
+      setSelectedProjectId(null);
+      setShowTaskList(false);
+    }
+  };
+
+  const handleAddProjectClick = () => {
+    setShowCreateForm((prev) => {
+      const newShowCreateForm = !prev;
+      if (newShowCreateForm) {
+        setSelectedProjectId(null);
+        setShowTaskList(false);
+      } else {
+        setSelectedProjectId(projects[0]?.id ?? null);
+      }
+      return newShowCreateForm;
+    });
+  };
+
+  const toggleSidebar = () => setSidebarOpen((prev) => !prev);
+  const toggleTaskList = () => setShowTaskList((prev) => !prev);
+
+  /* --------- RENDER --------- */
+  return (
+    <div className="projects-page">
+      <Navbar />
+
+      <div className="main-wrapper">
+        <div className={`projects-sidebar ${sidebarOpen ? "open" : "closed"}`}>
+          <div className="sidebar-header">
+            <h2 className="sidebar-title">Projelerim</h2>
+            <button
+              className={`add-project-btn ${showCreateForm ? "active" : ""}`}
+              onClick={handleAddProjectClick}
+              title={showCreateForm ? "Formu Kapat" : "Yeni Proje Oluştur"}
+            >
+              +
+            </button>
+          </div>
+
+          <ProjectList
+            projects={projects}
+            selectedProjectId={selectedProjectId}
+            onDetailClick={handleProjectClick}
+            onProjectUpdated={handleProjectUpdated}
+            onProjectDeleted={handleProjectDeleted}
+          />
+        </div>
+
+        <button
+          className={`sidebar-toggle-btn ${sidebarOpen ? "open" : "closed"}`}
+          onClick={toggleSidebar}
+          title={sidebarOpen ? "Sidebar'ı Kapat" : "Sidebar'ı Aç"}
+        >
+          {sidebarOpen ? "◀" : "▶"}
+        </button>
+
+        <div className="projects-content">
+          <h1 className="page-title">
+            {selectedProject?.projectName ?? "Proje Seçin"}
+          </h1>
+
+          <button onClick={toggleTaskList} disabled={!selectedProject}>
+            {showTaskList ? "Proje Detayına Dön" : "Görevleri Göster"}
+          </button>
+
+          <div className="content-body">
+            {showCreateForm ? (
+              <div className="create-project-main">
+                <h2 className="create-project-main-title">Yeni Proje Oluştur</h2>
+                <p className="create-project-main-subtitle">
+                  Yeni bir proje oluşturarak görevlerinizi organize edin
+                </p>
+                <CreateProject onProjectCreated={handleProjectCreated} />
+              </div>
+            ) : showTaskList && selectedProject ? (
+              <TaskList
+                  project={selectedProject.id, selectedProject.projectName}
+                  tasks={tasks.filter(t => t.status === column.status)}
+                  fetchTasks={fetchTasks}
+                  onDragStart={handleDragStart}
+              />
+            ) : selectedProjectId ? (
+              <ProjectDetail projectId={selectedProjectId} />
+            ) : (
+              <div className="empty-state">
+                <div className="empty-state-icon">📋</div>
+                <h3 className="empty-state-title">Proje Seçin</h3>
+                <p className="empty-state-description">
+                  Sol taraftan bir proje seçerek görevlerinizi görüntüleyebilirsiniz.
+                </p>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Projects;

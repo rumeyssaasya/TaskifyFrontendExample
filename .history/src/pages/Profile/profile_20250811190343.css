@@ -1,0 +1,228 @@
+.profile-page {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    overflow-y: auto;
+    background-color: #fafafa;
+    padding: 0px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #2c3e50;
+}
+
+.profile-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    border-bottom: 1px solid #e0e0e0;
+    padding-bottom: 12px;
+}
+
+.btn-edit-profile,
+.btn-save,
+.btn-cancel,
+.btn-upload,
+.btn-change-password {
+    background-color: #1976d2;
+    border: none;
+    color: white;
+    padding: 8px 14px;
+    font-weight: 600;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.25s ease, transform 0.2s ease;
+}
+
+.btn-edit-profile:hover,
+.btn-save:hover,
+.btn-upload:hover,
+.btn-change-password:hover {
+    background-color: #1565c0;
+    transform: scale(1.05);
+}
+
+.btn-cancel {
+    background-color: #d32f2f;
+}
+
+.btn-cancel:hover {
+    background-color: #b71c1c;
+    transform: scale(1.05);
+}
+
+.profile-edit-actions {
+    display: flex;
+    gap: 12px;
+}
+
+.alert-error {
+    background-color: #fdecea;
+    color: #d32f2f;
+    padding: 12px 16px;
+    border-radius: 4px;
+    margin-bottom: 16px;
+}
+
+.alert-success {
+    background-color: #e8f5e9;
+    color: #388e3c;
+    padding: 12px 16px;
+    border-radius: 4px;
+    margin-bottom: 16px;
+}
+
+.profile-main {
+    display: flex;
+    gap: 32px;
+    flex-wrap: wrap;
+}
+
+.profile-image-wrapper {
+    flex: 1 1 280px;
+    max-width: 280px;
+}
+
+.profile-image-box {
+    position: relative;
+    width: 280px;
+    height: 280px;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 2px solid #1976d2;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(25, 118, 210, 0.2);
+}
+
+.profile-img {
+    width: auto;
+    height: 100%;
+    object-fit: none;
+    display: block;
+    border-radius: 0;
+    /* container yuvarlak, img düz */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.image-upload-section {
+    position: absolute;
+    bottom: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(25, 118, 210, 0.85);
+    padding: 8px 16px;
+    border-radius: 24px;
+    cursor: pointer;
+    color: white;
+    font-weight: 600;
+    user-select: none;
+    box-shadow: 0 2px 8px rgba(25, 118, 210, 0.5);
+    transition: background-color 0.3s ease;
+}
+
+.image-upload-section:hover {
+    background-color: #1565c0;
+}
+
+.file-name-label {
+    display: block;
+    margin-top: 8px;
+    font-size: 0.85rem;
+    color: #e0e0e0;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 280px;
+}
+
+.profile-info {
+    flex: 2 1 400px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.profile-info-item {
+    display: flex;
+    flex-direction: column;
+    font-weight: 500;
+}
+
+.profile-info-item label {
+    margin-bottom: 6px;
+    color: #555;
+    font-size: 0.9rem;
+}
+
+.input-edit {
+    padding: 8px 12px;
+    border: 1.5px solid #1976d2;
+    border-radius: 6px;
+    font-size: 1rem;
+    color: #2c3e50;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.input-edit:focus {
+    border-color: #1565c0;
+}
+
+.change-password-area {
+    margin-top: 32px;
+    border-top: 1px solid #e0e0e0;
+    padding-top: 24px;
+    text-align: right;
+}
+
+.btn-change-password {
+    padding: 10px 18px;
+    font-size: 1rem;
+    border-radius: 6px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .profile-main {
+        flex-direction: column;
+        gap: 24px;
+    }
+
+    .profile-image-wrapper,
+    .profile-info {
+        max-width: 100%;
+        flex: unset;
+    }
+}
+
+.profile-image-selection {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 16px;
+    max-width: 280px;
+    justify-content: center;
+}
+
+.selectable-image {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid transparent;
+    object-fit: cover;
+    transition: border-color 0.3s ease, transform 0.2s ease;
+}
+
+.selectable-image:hover {
+    transform: scale(1.1);
+    border-color: #1976d2;
+}
+
+.selectable-image.selected {
+    border-color: #1976d2;
+    box-shadow: 0 0 6px #1976d2;
+}

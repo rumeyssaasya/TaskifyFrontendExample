@@ -1,0 +1,165 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    color: #333;
+}
+
+/* HEADER */
+.landing-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px 40px;
+    background: transparent;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    transition: 0.3s;
+    z-index: 100;
+}
+
+.landing-header.scrolled {
+    background: rgba(79, 70, 229, 0.9);
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.nav-links button {
+    background: white;
+    color: #4f46e5;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+/* HERO */
+.hero-section {
+    height: 100vh;
+    background: linear-gradient(135deg, #4f46e5, #8b5cf6);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    position: relative;
+}
+
+.hero-content h1 {
+    font-size: 48px;
+    margin-bottom: 20px;
+}
+
+.hero-content p {
+    font-size: 18px;
+    margin-bottom: 30px;
+}
+
+.cta-buttons button {
+    padding: 12px 24px;
+    margin: 5px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+}
+
+.cta-buttons .secondary {
+    background: transparent;
+    border: 2px solid white;
+    color: white;
+}
+
+.scroll-down {
+    position: absolute;
+    bottom: 20px;
+    font-size: 24px;
+    animation: bounce 1.5s infinite;
+}
+
+@keyframes bounce {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(10px);
+    }
+}
+
+/* FEATURES */
+.features-section {
+    background: #f9fafb;
+    padding: 80px 0;
+}
+
+.feature-slide {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.feature-slide img {
+    width: 300px;
+    margin-bottom: 20px;
+    border-radius: 12px;
+}
+
+/* GALLERY */
+.gallery-section {
+    background: white;
+    padding: 80px 0;
+}
+
+.gallery-slide {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.gallery-slide img {
+    width: 300px;
+    border-radius: 12px;
+}
+
+.gallery-text {
+    max-width: 400px;
+}
+
+/* TESTIMONIALS */
+.testimonials-section {
+    background: #f3f4f6;
+    padding: 80px 20px;
+    text-align: center;
+}
+
+.testimonial-slide {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* FOOTER */
+.footer {
+    background: #1e1b4b;
+    color: white;
+    padding: 30px;
+    text-align: center;
+}

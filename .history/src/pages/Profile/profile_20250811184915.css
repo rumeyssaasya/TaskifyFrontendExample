@@ -1,0 +1,28 @@
+.profile-image-selection {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 16px;
+    max-width: 280px;
+    justify-content: center;
+}
+
+.selectable-image {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid transparent;
+    object-fit: cover;
+    transition: border-color 0.3s ease, transform 0.2s ease;
+}
+
+.selectable-image:hover {
+    transform: scale(1.1);
+    border-color: #1976d2;
+}
+
+.selectable-image.selected {
+    border-color: #1976d2;
+    box-shadow: 0 0 6px #1976d2;
+}
