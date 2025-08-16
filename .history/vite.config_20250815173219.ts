@@ -6,7 +6,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'http://api.taskify.rumer.tr/',  // Backend adresin
+        target: 'https://213.142.148.50:8080',  // Backend adresin
         changeOrigin: true,
         secure: false,
       },

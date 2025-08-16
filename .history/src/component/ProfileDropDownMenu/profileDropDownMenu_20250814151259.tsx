@@ -18,7 +18,7 @@ function ProfileDropdown({
 }: ProfileDropdownProps) {
   if (!show) return null;
 
-  const backendBaseUrl = "http://api.taskify.rumer.tr/";
+  const backendBaseUrl = "https://213.142.148.50/";
 
   const defaultImage = `${backendBaseUrl}/images/default.png`;
 

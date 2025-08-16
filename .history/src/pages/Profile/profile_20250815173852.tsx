@@ -15,7 +15,7 @@ function ProfilePage() {
   const [success, setSuccess] = useState('');
   const [showChangePassword, setShowChangePassword] = useState(false);
 
-  const backendBaseUrl = 'http://api.taskify.rumer.tr/';
+  const backendBaseUrl = 'https://213.142.148.50';
 
   // Backend'deki profil resim seçenekleri (path olarak)
   const profileImageOptions = [

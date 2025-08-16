@@ -2,7 +2,7 @@ import axios from 'axios';
 
 // 1. Axios instance oluşturuyoruz, böylece tüm isteklerde aynı baseURL kullanılır
 const api = axios.create({
-  baseURL: 'http://api.taskify.rumer.tr/', // Backend adresin, kendi projenin URL'si
+  baseURL: 'https://213.142.148.50:8080/', // Backend adresin, kendi projenin URL'si
 });
 
 // 2. İstek gönderilmeden önce çalışacak interceptor ekliyoruz
