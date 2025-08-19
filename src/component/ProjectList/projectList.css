@@ -150,3 +150,103 @@
 .project-item.selected .delete-btn:hover {
     background: rgba(255, 255, 255, 0.1);
 }
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .project-item {
+        padding: 10px 12px;
+        font-size: 14px;
+        margin-bottom: 4px;
+    }
+
+    .edit-btn,
+    .delete-btn {
+        width: 28px;
+        height: 28px;
+        min-width: 28px;
+        min-height: 28px;
+        font-size: 14px;
+        padding: 4px;
+    }
+
+    .project-actions {
+        gap: 4px;
+    }
+}
+
+@media (max-width: 480px) {
+    .project-item {
+        padding: 8px 10px;
+        font-size: 13px;
+        margin-bottom: 3px;
+        border-radius: 6px;
+    }
+
+    .edit-btn,
+    .delete-btn {
+        width: 24px;
+        height: 24px;
+        min-width: 24px;
+        min-height: 24px;
+        font-size: 12px;
+        padding: 3px;
+    }
+
+    .project-actions {
+        gap: 3px;
+    }
+}
+
+/* Touch Device Optimizations */
+@media (hover: none) and (pointer: coarse) {
+    .project-item {
+        min-height: 44px;
+    }
+
+    .edit-btn,
+    .delete-btn {
+        min-height: 44px;
+        min-width: 44px;
+    }
+
+    .project-item:hover {
+        transform: none;
+    }
+
+    .project-item:active {
+        transform: translateX(2px);
+        background: #e3f2fd;
+    }
+
+    .project-item.selected:active {
+        transform: translateX(2px);
+        background: #677ae6;
+    }
+
+    .edit-btn:hover,
+    .delete-btn:hover {
+        transform: none;
+    }
+
+    .edit-btn:active,
+    .delete-btn:active {
+        transform: scale(0.95);
+    }
+}
+
+/* Small Mobile Devices */
+@media (max-width: 360px) {
+    .project-item {
+        padding: 6px 8px;
+        font-size: 12px;
+    }
+
+    .edit-btn,
+    .delete-btn {
+        width: 20px;
+        height: 20px;
+        min-width: 20px;
+        min-height: 20px;
+        font-size: 10px;
+    }
+}

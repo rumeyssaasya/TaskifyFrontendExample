@@ -163,6 +163,7 @@ textarea.form-input {
 }
 
 @keyframes shake {
+
   0%,
   100% {
     transform: translateX(0);
@@ -257,25 +258,86 @@ textarea.form-input {
   }
 }
 
-@media (max-width: 768px) {
+/* Responsive Design */
+@media (max-width: 1024px) {
   .modal {
-    padding: 20px;
-    width: 95%;
-    max-height: 90vh;
+    max-width: 520px;
+    padding: 22px;
   }
 
   .modal-header h2 {
     font-size: 1.4rem;
   }
+}
+
+@media (max-width: 767px) {
+  .modal {
+    padding: 20px;
+    width: 95%;
+    max-height: 90vh;
+    border-radius: 10px;
+  }
+
+  .modal-header {
+    margin-bottom: 18px;
+    padding-bottom: 10px;
+  }
+
+  .modal-header h2 {
+    font-size: 1.3rem;
+  }
+
+  .close-button {
+    width: 32px;
+    height: 32px;
+    font-size: 1.6rem;
+  }
+
+  .form-group {
+    margin-bottom: 18px;
+  }
+
+  .form-group label {
+    font-size: 0.85rem;
+    margin-bottom: 5px;
+  }
+
+  .form-input {
+    padding: 10px 12px;
+    font-size: 16px;
+    /* Prevents zoom on iOS */
+    border-radius: 6px;
+  }
+
+  textarea.form-input {
+    min-height: 80px;
+  }
+
+  .char-counter {
+    font-size: 0.75rem;
+    margin-top: 4px;
+  }
+
+  .error-message {
+    padding: 14px;
+    margin: 16px 0;
+    font-size: 0.85rem;
+    border-radius: 8px;
+  }
 
   .modal-actions {
     flex-direction: column-reverse;
     gap: 10px;
+    margin-top: 20px;
+    padding-top: 14px;
   }
 
   .btn {
     width: 100%;
     min-width: auto;
+    padding: 12px 16px;
+    font-size: 0.9rem;
+    min-height: 44px;
   }
 }
 
@@ -283,17 +345,165 @@ textarea.form-input {
   .modal {
     padding: 16px;
     width: 98%;
+    max-height: 95vh;
+    border-radius: 8px;
   }
 
   .modal-header {
     margin-bottom: 16px;
+    padding-bottom: 8px;
+  }
+
+  .modal-header h2 {
+    font-size: 1.2rem;
+  }
+
+  .close-button {
+    width: 28px;
+    height: 28px;
+    font-size: 1.4rem;
   }
 
   .form-group {
     margin-bottom: 16px;
   }
 
+  .form-group label {
+    font-size: 0.8rem;
+    margin-bottom: 4px;
+  }
+
   .form-input {
-    padding: 10px 12px;
+    padding: 8px 10px;
+    font-size: 16px;
+    border-radius: 6px;
+  }
+
+  textarea.form-input {
+    min-height: 60px;
+  }
+
+  .char-counter {
+    font-size: 0.7rem;
+    margin-top: 3px;
+  }
+
+  .error-message {
+    padding: 12px;
+    margin: 14px 0;
+    font-size: 0.8rem;
+    border-radius: 6px;
+  }
+
+  .modal-actions {
+    gap: 8px;
+    margin-top: 18px;
+    padding-top: 12px;
+  }
+
+  .btn {
+    padding: 10px 14px;
+    font-size: 0.85rem;
+    min-height: 44px;
+  }
+}
+
+/* Touch Device Optimizations */
+@media (hover: none) and (pointer: coarse) {
+  .form-input {
+    min-height: 44px;
+  }
+
+  .btn {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  .close-button {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  .btn-primary:hover {
+    transform: none;
+  }
+
+  .btn-primary:active {
+    transform: scale(0.98);
+  }
+
+  .btn-secondary:hover {
+    transform: none;
+  }
+
+  .btn-secondary:active {
+    transform: scale(0.98);
+  }
+
+  .close-button:hover {
+    background-color: transparent;
+  }
+
+  .close-button:active {
+    background-color: #f8f9fa;
+    transform: scale(0.95);
+  }
+}
+
+/* Small Mobile Devices */
+@media (max-width: 360px) {
+  .modal {
+    padding: 14px;
+    width: 99%;
+  }
+
+  .modal-header h2 {
+    font-size: 1.1rem;
+  }
+
+  .close-button {
+    width: 24px;
+    height: 24px;
+    font-size: 1.2rem;
+  }
+
+  .form-group label {
+    font-size: 0.75rem;
+  }
+
+  .form-input {
+    padding: 6px 8px;
+    font-size: 16px;
+  }
+
+  textarea.form-input {
+    min-height: 50px;
+  }
+
+  .btn {
+    padding: 8px 12px;
+    font-size: 0.8rem;
+  }
+}
+
+/* Landscape Orientation for Mobile */
+@media (max-height: 500px) and (orientation: landscape) {
+  .modal {
+    max-height: 98vh;
+    padding: 12px;
+  }
+
+  .modal-header {
+    margin-bottom: 12px;
+    padding-bottom: 6px;
+  }
+
+  .form-group {
+    margin-bottom: 12px;
+  }
+
+  .modal-actions {
+    margin-top: 16px;
+    padding-top: 10px;
   }
 }

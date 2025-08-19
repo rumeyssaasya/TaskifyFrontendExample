@@ -1,0 +1,194 @@
+.container {
+    max-width: 320px;
+    background: #fff;
+    padding: 16px 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgb(0 0 0 / 0.1);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: #333;
+}
+
+.project-share-section {
+    display: flex;
+    justify-content: space-between;
+    max-width: 300px;
+    max-height: 50px;
+}
+
+.username-add-input {
+    width: 100%;
+    padding: 10px 12px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    transition: border-color 0.3s ease;
+}
+
+.username-add-input:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+.add-btn {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 12px;
+    margin-top: 14px;
+    font-weight: 700;
+    font-size: 1rem;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.add-btn:disabled {
+    background-color: #7aa7e9;
+    cursor: not-allowed;
+}
+
+.add-btn:hover:not(:disabled) {
+    background-color: #0056b3;
+}
+
+.message {
+    margin-top: 16px;
+    font-weight: 600;
+}
+
+.message.error {
+    color: #d9534f;
+}
+
+.message.success {
+    color: #28a745;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        max-width: 100%;
+        padding: 14px 16px;
+        border-radius: 6px;
+    }
+
+    .label {
+        font-size: 14px;
+        margin-bottom: 5px;
+    }
+
+    .project-share-section {
+        max-width: 100%;
+        max-height: 44px;
+    }
+
+    .username-add-input {
+        padding: 8px 10px;
+        font-size: 16px;
+        /* Prevents zoom on iOS */
+        border-radius: 4px;
+    }
+
+    .add-btn {
+        padding: 10px;
+        margin-top: 12px;
+        font-size: 14px;
+        border-radius: 4px;
+    }
+
+    .message {
+        margin-top: 12px;
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 12px 14px;
+        border-radius: 6px;
+    }
+
+    .label {
+        font-size: 13px;
+        margin-bottom: 4px;
+    }
+
+    .project-share-section {
+        display: block;
+        max-height: 40px;
+    }
+
+    .username-add-input {
+        padding: 6px 8px;
+        font-size: 16px;
+        border-radius: 4px;
+    }
+
+    .add-btn {
+        padding: 8px;
+        margin-top: 10px;
+        font-size: 13px;
+        border-radius: 4px;
+    }
+
+    .message {
+        margin-top: 10px;
+        font-size: 12px;
+    }
+}
+
+/* Touch Device Optimizations */
+@media (hover: none) and (pointer: coarse) {
+    .username-add-input {
+        min-height: 44px;
+    }
+
+    .add-btn {
+        min-height: 44px;
+        min-width: 44px;
+    }
+
+    .add-btn:hover:not(:disabled) {
+        background-color: #007bff;
+    }
+
+    .add-btn:active:not(:disabled) {
+        background-color: #0056b3;
+        transform: scale(0.98);
+    }
+}
+
+/* Small Mobile Devices */
+@media (max-width: 360px) {
+    .container {
+        padding: 10px 12px;
+    }
+
+    .label {
+        font-size: 12px;
+    }
+
+    .username-add-input {
+        padding: 5px 6px;
+        font-size: 16px;
+    }
+
+    .add-btn {
+        padding: 6px;
+        font-size: 12px;
+    }
+
+    .message {
+        font-size: 11px;
+    }
+}

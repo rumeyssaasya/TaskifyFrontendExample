@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./landing.css";
 
 import img from "../../assets/images/lBackground.png";
@@ -66,6 +67,15 @@ const LandingPage = () => {
     <div className="landing-wrapper">
       <header className="header">
         <div className="logo">Taskify</div>
+        <nav className="auth-navbar">
+          <input type="checkbox" id="menu-toggle" className="menu-checkbox" />
+          <label htmlFor="menu-toggle" className="menu-button">☰</label>
+          <ul className="menu">
+            <li><Link to="/auth/login">Giriş Yap</Link></li>
+            <li><Link to="/auth/register">Kayıt Ol</Link></li>
+            <li><a href="mailto:taskifyRMR@gmail.com" target="_blank">İletişim</a></li>
+          </ul>
+        </nav>
         <nav>
           <button className="btn login" onClick={() => navigate("/auth/login")}>
             Giriş Yap
@@ -104,7 +114,7 @@ const LandingPage = () => {
             </div>
           </div>
           <div className="hero-image">
-            <img src= {hero} alt="Taskify Hero" />
+            <img src= {hero} alt="Taskify Hero"  className="hero-img"/>
           </div>
         </section>
 

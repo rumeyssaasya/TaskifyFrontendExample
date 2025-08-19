@@ -287,9 +287,14 @@
 
 /* Responsive Design */
 @media (max-width: 480px) {
+    .login-page {
+        padding: 15px;
+    }
+
     .login-container {
         padding: 24px;
         margin: 10px;
+        border-radius: 12px;
     }
 
     .login-title {
@@ -298,10 +303,116 @@
 
     .form-input {
         padding: 12px 14px;
+        font-size: 16px;
+        /* Prevents zoom on iOS */
     }
 
     .login-btn {
         padding: 12px 20px;
         font-size: 14px;
+        min-height: 44px;
+    }
+
+    .modal-content {
+        margin: 20px;
+        padding: 20px;
+    }
+}
+
+/* Tablet Responsive */
+@media (max-width: 768px) {
+    .login-container {
+        max-width: 450px;
+        padding: 30px;
+    }
+
+    .login-title {
+        font-size: 26px;
+    }
+}
+
+/* Small Mobile Devices */
+@media (max-width: 360px) {
+    .login-page {
+        padding: 10px;
+    }
+
+    .login-container {
+        padding: 20px;
+        margin: 5px;
+    }
+
+    .login-title {
+        font-size: 22px;
+    }
+
+    .login-subtitle {
+        font-size: 13px;
+    }
+
+    .form-input {
+        padding: 10px 12px;
+    }
+
+    .login-btn {
+        padding: 10px 16px;
+        font-size: 13px;
+    }
+}
+
+/* Touch Device Optimizations */
+@media (hover: none) and (pointer: coarse) {
+    .login-btn {
+        min-height: 44px;
+        min-width: 44px;
+    }
+
+    .form-input {
+        min-height: 44px;
+    }
+
+    .password-toggle-btn {
+        min-height: 44px;
+        min-width: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .forgot-password-btn {
+        min-height: 44px;
+        min-width: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+/* Landscape Orientation */
+@media (max-height: 500px) and (orientation: landscape) {
+    .login-page {
+        padding: 10px;
+    }
+
+    .login-container {
+        padding: 20px;
+        margin: 5px;
+    }
+
+    .login-header {
+        margin-bottom: 20px;
+    }
+
+    .login-title {
+        font-size: 22px;
+        margin-bottom: 5px;
+    }
+
+    .login-subtitle {
+        font-size: 13px;
+    }
+
+    .login-form {
+        gap: 15px;
     }
 }

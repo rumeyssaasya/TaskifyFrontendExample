@@ -338,9 +338,14 @@
 
 /* Responsive Design */
 @media (max-width: 480px) {
+    .register-page {
+        padding: 15px;
+    }
+
     .register-container {
         padding: 24px;
         margin: 10px;
+        border-radius: 12px;
     }
 
     .register-title {
@@ -349,15 +354,159 @@
 
     .form-input {
         padding: 12px 14px;
+        font-size: 16px;
+        /* Prevents zoom on iOS */
+    }
+
+    .form-select {
+        padding: 12px 14px;
+        font-size: 16px;
+        /* Prevents zoom on iOS */
     }
 
     .register-btn {
         padding: 12px 20px;
         font-size: 14px;
+        min-height: 44px;
     }
 
     .form-row {
         flex-direction: column;
         gap: 20px;
+    }
+
+    .terms-checkbox {
+        gap: 10px;
+    }
+
+    .terms-text {
+        font-size: 13px;
+    }
+}
+
+/* Tablet Responsive */
+@media (max-width: 768px) {
+    .register-container {
+        max-width: 500px;
+        padding: 30px;
+    }
+
+    .register-title {
+        font-size: 26px;
+    }
+}
+
+/* Small Mobile Devices */
+@media (max-width: 360px) {
+    .register-page {
+        padding: 10px;
+    }
+
+    .register-container {
+        padding: 20px;
+        margin: 5px;
+    }
+
+    .register-title {
+        font-size: 22px;
+    }
+
+    .register-subtitle {
+        font-size: 13px;
+    }
+
+    .form-input {
+        padding: 10px 12px;
+    }
+
+    .form-select {
+        padding: 10px 12px;
+    }
+
+    .register-btn {
+        padding: 10px 16px;
+        font-size: 13px;
+    }
+
+    .terms-text {
+        font-size: 12px;
+    }
+}
+
+/* Touch Device Optimizations */
+@media (hover: none) and (pointer: coarse) {
+    .register-btn {
+        min-height: 44px;
+        min-width: 44px;
+    }
+
+    .form-input {
+        min-height: 44px;
+    }
+
+    .form-select {
+        min-height: 44px;
+    }
+
+    .password-toggle-btn {
+        min-height: 44px;
+        min-width: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .terms-checkbox input[type="checkbox"] {
+        min-height: 44px;
+        min-width: 44px;
+    }
+}
+
+/* Landscape Orientation */
+@media (max-height: 600px) and (orientation: landscape) {
+    .register-page {
+        padding: 10px;
+    }
+
+    .register-container {
+        padding: 20px;
+        margin: 5px;
+    }
+
+    .register-header {
+        margin-bottom: 20px;
+    }
+
+    .register-title {
+        font-size: 22px;
+        margin-bottom: 5px;
+    }
+
+    .register-subtitle {
+        font-size: 13px;
+    }
+
+    .register-form {
+        gap: 8px;
+    }
+
+    .form-group {
+        margin-bottom: 8px;
+    }
+}
+
+/* Large Screens */
+@media (min-width: 1200px) {
+    .register-container {
+        max-width: 500px;
+        padding: 50px;
+    }
+
+    .register-title {
+        font-size: 32px;
+    }
+
+    .register-subtitle {
+        font-size: 16px;
     }
 }

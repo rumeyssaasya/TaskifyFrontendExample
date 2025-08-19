@@ -185,3 +185,245 @@
     font-size: 12px;
     margin-top: 4px;
 }
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .create-project-container {
+        padding: 16px;
+        margin-top: 16px;
+        border-radius: 10px;
+    }
+
+    .create-project-title {
+        font-size: 16px;
+        margin-bottom: 12px;
+    }
+
+    .create-project-title::before {
+        width: 20px;
+        height: 20px;
+        font-size: 14px;
+    }
+
+    .create-project-form {
+        gap: 12px;
+    }
+
+    .form-group {
+        gap: 6px;
+    }
+
+    .form-label {
+        font-size: 13px;
+    }
+
+    .form-input,
+    .form-textarea,
+    .form-select,
+    .date-input {
+        padding: 10px 12px;
+        font-size: 16px;
+        /* Prevents zoom on iOS */
+    }
+
+    .form-textarea {
+        min-height: 60px;
+    }
+
+    .create-project-btn {
+        padding: 10px 20px;
+        font-size: 13px;
+        width: 100%;
+        align-self: stretch;
+    }
+
+    .form-row {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .checkbox-group {
+        gap: 6px;
+    }
+
+    .checkbox-input {
+        width: 16px;
+        height: 16px;
+    }
+
+    .checkbox-label {
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 480px) {
+    .create-project-container {
+        padding: 12px;
+        margin-top: 12px;
+        border-radius: 8px;
+    }
+
+    .create-project-title {
+        font-size: 15px;
+        margin-bottom: 10px;
+    }
+
+    .create-project-title::before {
+        width: 18px;
+        height: 18px;
+        font-size: 12px;
+    }
+
+    .create-project-form {
+        gap: 10px;
+    }
+
+    .form-group {
+        gap: 5px;
+    }
+
+    .form-label {
+        font-size: 12px;
+    }
+
+    .form-input,
+    .form-textarea,
+    .form-select,
+    .date-input {
+        padding: 8px 10px;
+        font-size: 16px;
+        border-radius: 6px;
+    }
+
+    .form-textarea {
+        min-height: 50px;
+    }
+
+    .create-project-btn {
+        padding: 8px 16px;
+        font-size: 12px;
+        border-radius: 6px;
+    }
+
+    .form-row {
+        gap: 10px;
+    }
+
+    .checkbox-input {
+        width: 14px;
+        height: 14px;
+    }
+
+    .checkbox-label {
+        font-size: 12px;
+    }
+
+    .error-message,
+    .success-message {
+        font-size: 11px;
+    }
+}
+
+/* Touch Device Optimizations */
+@media (hover: none) and (pointer: coarse) {
+
+    .form-input,
+    .form-textarea,
+    .form-select,
+    .date-input {
+        min-height: 44px;
+    }
+
+    .create-project-btn {
+        min-height: 44px;
+        min-width: 44px;
+    }
+
+    .checkbox-input {
+        min-height: 44px;
+        min-width: 44px;
+    }
+
+    .create-project-btn:hover {
+        transform: none;
+    }
+
+    .create-project-btn:active {
+        transform: scale(0.98);
+    }
+}
+
+/* Small Mobile Devices */
+@media (max-width: 360px) {
+    .create-project-container {
+        padding: 10px;
+        margin-top: 10px;
+    }
+
+    .create-project-title {
+        font-size: 14px;
+    }
+
+    .create-project-title::before {
+        width: 16px;
+        height: 16px;
+        font-size: 11px;
+    }
+
+    .form-input,
+    .form-textarea,
+    .form-select,
+    .date-input {
+        padding: 6px 8px;
+        font-size: 16px;
+    }
+
+    .create-project-btn {
+        padding: 6px 12px;
+        font-size: 11px;
+    }
+}
+
+/* Large Screens */
+@media (min-width: 1200px) {
+    .create-project-container {
+        padding: 24px;
+        margin-top: 24px;
+    }
+
+    .create-project-title {
+        font-size: 20px;
+        margin-bottom: 20px;
+    }
+
+    .create-project-title::before {
+        width: 28px;
+        height: 28px;
+        font-size: 18px;
+    }
+
+    .create-project-form {
+        gap: 20px;
+    }
+
+    .form-group {
+        gap: 10px;
+    }
+
+    .form-label {
+        font-size: 15px;
+    }
+
+    .form-input,
+    .form-textarea,
+    .form-select,
+    .date-input {
+        padding: 14px 18px;
+        font-size: 15px;
+    }
+
+    .create-project-btn {
+        padding: 14px 28px;
+        font-size: 15px;
+    }
+}

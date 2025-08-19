@@ -212,3 +212,208 @@
     background: #f8f9fa;
     transform: scale(1.02);
 }
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .task-card {
+        padding: 16px;
+        border-radius: 10px;
+    }
+
+    .task-title {
+        font-size: 16px;
+    }
+
+    .task-status {
+        padding: 3px 10px;
+        font-size: 11px;
+        margin-left: 8px;
+    }
+
+    .task-description {
+        font-size: 13px;
+        line-height: 1.4em;
+    }
+
+    .read-more-btn {
+        font-size: 13px;
+        margin-bottom: 10px;
+    }
+
+    .task-actions {
+        gap: 12px;
+        margin: 12px;
+    }
+
+    .task-btn {
+        padding: 5px 10px;
+        font-size: 11px;
+    }
+
+    .task-date {
+        font-size: 11px;
+    }
+
+    .task-priority {
+        top: 10px;
+        right: 10px;
+        width: 6px;
+        height: 6px;
+    }
+}
+
+@media (max-width: 480px) {
+    .task-card {
+        padding: 12px;
+        border-radius: 8px;
+    }
+
+    .task-header {
+        margin-bottom: 10px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+
+    .task-title {
+        font-size: 15px;
+        margin: 0;
+        width: 100%;
+    }
+
+    .task-status {
+        padding: 2px 8px;
+        font-size: 10px;
+        margin-left: 0;
+        align-self: flex-start;
+    }
+
+    .task-description {
+        font-size: 12px;
+        line-height: 1.3em;
+        margin-bottom: 3px;
+    }
+
+    .read-more-btn {
+        font-size: 12px;
+        margin-bottom: 8px;
+    }
+
+    .task-actions {
+        gap: 8px;
+        margin: 10px;
+        justify-content: flex-start;
+    }
+
+    .task-btn {
+        padding: 4px 8px;
+        font-size: 10px;
+        min-height: 32px;
+        min-width: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .task-date {
+        font-size: 10px;
+    }
+
+    .task-priority {
+        top: 8px;
+        right: 8px;
+        width: 5px;
+        height: 5px;
+    }
+}
+
+/* Touch Device Optimizations */
+@media (hover: none) and (pointer: coarse) {
+    .task-card {
+        min-height: 44px;
+    }
+
+    .task-btn {
+        min-height: 44px;
+        min-width: 44px;
+    }
+
+    .read-more-btn {
+        min-height: 44px;
+        min-width: 44px;
+        display: flex;
+        align-items: center;
+    }
+
+    .task-card:hover {
+        transform: none;
+    }
+
+    .task-card:active {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .task-btn:hover {
+        transform: none;
+    }
+
+    .task-btn:active {
+        transform: scale(0.95);
+    }
+}
+
+/* Small Mobile Devices */
+@media (max-width: 360px) {
+    .task-card {
+        padding: 10px;
+    }
+
+    .task-title {
+        font-size: 14px;
+    }
+
+    .task-status {
+        font-size: 9px;
+        padding: 2px 6px;
+    }
+
+    .task-description {
+        font-size: 11px;
+    }
+
+    .read-more-btn {
+        font-size: 11px;
+    }
+
+    .task-btn {
+        padding: 3px 6px;
+        font-size: 9px;
+        min-height: 28px;
+        min-width: 28px;
+    }
+
+    .task-date {
+        font-size: 9px;
+    }
+}
+
+/* Landscape Orientation for Mobile */
+@media (max-height: 500px) and (orientation: landscape) {
+    .task-card {
+        padding: 10px;
+    }
+
+    .task-header {
+        margin-bottom: 8px;
+    }
+
+    .task-description {
+        max-height: 3em;
+        line-height: 1.3em;
+    }
+
+    .task-actions {
+        margin: 8px;
+    }
+}

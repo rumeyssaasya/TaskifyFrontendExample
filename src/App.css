@@ -3,8 +3,22 @@
   margin: 0px;
   padding: 0px;
   text-align: center;
+  min-height: 100vh;
+  overflow-x: hidden;
 }
 
+/* Responsive Design */
+@media (max-width: 768px) {
+  #root {
+    padding: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  #root {
+    font-size: 14px;
+  }
+}
 
 @keyframes logo-spin {
   from {
