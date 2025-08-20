@@ -13,13 +13,6 @@ Taskify, modern bir görev yönetim uygulamasıdır. Kullanıcılar projelerini 
 ## Canlı Link
 [Taskify Uygulaması](https://taskify.rumer.tr/)
 
-## Backend Özellikleri
-- Spring Boot ile REST API geliştirme
-- JWT tabanlı kimlik doğrulama
-- CRUD işlemleri: `/profile`, `/projects`, `/tasks`
-- H2/PostgreSQL veri tabanı desteği
-- BCrypt ile şifre güvenliği
-
 ## Frontend Özellikleri
 - React + TypeScript
 - Kullanıcı arayüzü: proje listesi, görev yönetimi, profil sayfası
