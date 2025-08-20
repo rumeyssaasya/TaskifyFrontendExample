@@ -1,44 +1,24 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
+import { useSwipeable } from "react-swipeable"; // 👈 eklendi
 import "./landing.css";
 
 import img from "../../assets/images/lBackground.png";
-import hero from "../../assets/images/hero2.png"
-import expPhoto1 from "../../assets/images/landing1.png"
-import expPhoto2 from "../../assets/images/landing2.png"
-import expPhoto3 from "../../assets/images/landing3.png"
-import expPhoto4 from "../../assets/images/landing4.png"
-import expPhoto5 from "../../assets/images/landing5.png"
-import expPhoto6 from "../../assets/images/landin6.png"
-import expPhoto7 from "../../assets/images/landing7.png"
+import hero from "../../assets/images/hero2.png";
+import expPhoto1 from "../../assets/images/landing1.png";
+import expPhoto2 from "../../assets/images/landing2.png";
+import expPhoto3 from "../../assets/images/landing3.png";
+import expPhoto4 from "../../assets/images/landing4.png";
+import expPhoto5 from "../../assets/images/landing5.png";
+import expPhoto6 from "../../assets/images/landin6.png";
+import expPhoto7 from "../../assets/images/landing7.png";
 
 const features = [
-  {
-    title: "Kolay Görev Yönetimi",
-    description: "Görevlerinizi hızlı ve pratik şekilde organize edin, takip edin ve tamamlayın.",
-    image: img,
-  },
-  {
-    title: "Ekip İş Birliği",
-    description: "Ekip üyelerinizle gerçek zamanlı iletişim kurarak verimliliği artırın.",
-    image: img,
-  },
-  {
-    title: "Güvenli ve Hızlı Giriş",
-    description: "JWT tabanlı kimlik doğrulama ile verileriniz her zaman güvende.",
-    image: img,
-  },
-  {
-    title: "Mobil Uyumlu Tasarım",
-    description: "Her cihazda mükemmel deneyim, ofiste veya hareket halinde kolay erişim.",
-    image: img,
-  },
-  {
-    title: "Anlık Proje Güncellemeleri",
-    description: "Projelerinizdeki değişiklikleri anında takip edin, asla geride kalmayın.",
-    image: img,
-  },
+  { title: "Kolay Görev Yönetimi", description: "Görevlerinizi hızlı ve pratik şekilde organize edin, takip edin ve tamamlayın.", image: img },
+  { title: "Ekip İş Birliği", description: "Ekip üyelerinizle gerçek zamanlı iletişim kurarak verimliliği artırın.", image: img },
+  { title: "Güvenli ve Hızlı Giriş", description: "JWT tabanlı kimlik doğrulama ile verileriniz her zaman güvende.", image: img },
+  { title: "Mobil Uyumlu Tasarım", description: "Her cihazda mükemmel deneyim, ofiste veya hareket halinde kolay erişim.", image: img },
+  { title: "Anlık Proje Güncellemeleri", description: "Projelerinizdeki değişiklikleri anında takip edin, asla geride kalmayın.", image: img },
 ];
 
 const sliderData = [
@@ -55,13 +35,24 @@ const LandingPage = () => {
   const navigate = useNavigate();
   const [currentSlide, setCurrentSlide] = useState(0);
 
-  // Otomatik slider geçişi
+  // otomatik geçiş
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % sliderData.length);
     }, 4000);
     return () => clearInterval(interval);
   }, []);
+
+  // swipe / mouse drag eventleri
+  const handlers = useSwipeable({
+    onSwipedLeft: () =>
+      setCurrentSlide((prev) => (prev + 1) % sliderData.length),
+    onSwipedRight: () =>
+      setCurrentSlide((prev) =>
+        prev === 0 ? sliderData.length - 1 : prev - 1
+      ),
+    trackMouse: true, // 👈 mouse drag desteği
+  });
 
   return (
     <div className="landing-wrapper">
@@ -74,21 +65,15 @@ const LandingPage = () => {
             <li><Link to="/auth/login">Giriş Yap</Link></li>
             <li><Link to="/auth/register">Kayıt Ol</Link></li>
             <li><a href="mailto:taskifyRMR@gmail.com">İletişim</a></li>
-
           </ul>
         </nav>
         <nav>
-          <button className="btn login" onClick={() => navigate("/auth/login")}>
-            Giriş Yap
-          </button>
-          <button className="btn register" onClick={() => navigate("/auth/register")}>
-            Kayıt Ol
-          </button>
+          <button className="btn login" onClick={() => navigate("/auth/login")}>Giriş Yap</button>
+          <button className="btn register" onClick={() => navigate("/auth/register")}>Kayıt Ol</button>
           <button className="btn connection">
             <a
-            className="btn-link"
-              href="mailto:taskifyRMR@gmail.com"onMouseEnter={e => (e.currentTarget)}
-              onMouseLeave={e => (e.currentTarget)}
+              className="btn-link"
+              href="mailto:taskifyRMR@gmail.com"
               aria-label="Bize mail gönder"
               target="_blank"
               rel="noopener noreferrer"
@@ -115,12 +100,12 @@ const LandingPage = () => {
             </div>
           </div>
           <div className="hero-image">
-            <img src= {hero} alt="Taskify Hero"  className="hero-img"/>
+            <img src={hero} alt="Taskify Hero" className="hero-img" />
           </div>
         </section>
 
         {/* SLIDER */}
-        <section className="slider-section">
+        <section className="slider-section" {...handlers}>
           <div className="slider">
             {sliderData.map((slide, index) => (
               <div
@@ -154,23 +139,9 @@ const LandingPage = () => {
             </div>
           ))}
         </section>
-
-        {/* TESTIMONIAL */}
-        {/* <section className="testimonial-section">
-          <h2>Kullanıcılarımız Ne Diyor?</h2>
-          <blockquote>
-            “Taskify sayesinde ekip içi iletişim ve iş takibi kolaylaştı. %40 daha verimli çalışıyoruz.”
-            <cite>- Ahmet Yılmaz, Tech Lead</cite>
-          </blockquote>
-          <blockquote>
-            “Modern arayüzü ve hızlı performansı ile favorim oldu.”
-            <cite>- Ayşe Kaya, UX Designer</cite>
-          </blockquote>
-        </section> */}
       </main>
 
       <footer className="footer">
-        
         <p>© 2025 Taskify - RMR Apps & Games. Tüm Hakları Saklıdır.</p>
       </footer>
     </div>

@@ -17,7 +17,7 @@ const features = [
   {
     title: "Kolay Görev Yönetimi",
     description: "Görevlerinizi hızlı ve pratik şekilde organize edin, takip edin ve tamamlayın.",
-    image: img,
+    image: expPhoto1,
   },
   {
     title: "Ekip İş Birliği",

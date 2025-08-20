@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 import "./register.css";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const RegisterForm = () => {
   const [email, setEmail] = useState("");
@@ -13,9 +12,6 @@ const RegisterForm = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [showPassword, setShowPassword] = useState(false);
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
@@ -44,6 +40,7 @@ const RegisterForm = () => {
         password,
       });
 
+      // Popup bildirimi
       toast.success("Mailinizi kontrol edin! Giriş sayfasına yönlendiriliyorsunuz...", {
         position: "top-right",
         autoClose: 3000,
@@ -54,13 +51,13 @@ const RegisterForm = () => {
         progress: undefined,
       });
 
+      // 3 saniye sonra login'e yönlendir
       setTimeout(() => {
         navigate("/auth/login");
       }, 3000);
       
-    } catch (err:any) {
-        const message = err.response?.data || "Kayıt işlemi başarısız. Lütfen bilgileri kontrol edin.";
-        setError(message);
+    } catch (err) {
+      setError("Kayıt işlemi başarısız. Lütfen bilgileri kontrol edin.");
     } finally {
       setIsLoading(false);
     }
@@ -135,48 +132,32 @@ const RegisterForm = () => {
             />
           </div>
 
-          <div className="form-group password-group">
+          <div className="form-group">
             <label className="form-label">Şifre</label>
-            <div className="password-input-wrapper">
-              <input
-                type={showPassword ? "text" : "password"}
-                className="form-input"
-                placeholder="Şifrenizi girin"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                autoComplete="new-password"
-                required
-                disabled={isLoading}
-              />
-              <span
-                className="password-toggle-icon"
-                onClick={() => setShowPassword(!showPassword)}
-              >
-                {showPassword ? <FaEyeSlash /> : <FaEye />}
-              </span>
-            </div>
+            <input
+              type="password"
+              className="form-input"
+              placeholder="Şifrenizi girin"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              autoComplete="new-password"
+              required
+              disabled={isLoading}
+            />
           </div>
           
-          <div className="form-group password-group">
+          <div className="form-group">
             <label className="form-label">Şifre Tekrarı</label>
-            <div className="password-input-wrapper">
-              <input
-                type={showConfirmPassword ? "text" : "password"}
-                className="form-input"
-                placeholder="Şifrenizi tekrar girin"
-                value={confirmPassword}
-                onChange={(e) => setConfirmPassword(e.target.value)}
-                autoComplete="new-password"
-                required
-                disabled={isLoading}
-              />
-              <span
-                className="password-toggle-icon"
-                onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-              >
-                {showConfirmPassword ? <FaEyeSlash /> : <FaEye />}
-              </span>
-            </div>
+            <input
+              type="password"
+              className="form-input"
+              placeholder="Şifrenizi tekrar girin"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              autoComplete="new-password"
+              required
+              disabled={isLoading}
+            />
             {confirmPassword && !passwordsMatch && (
               <p className="password-error">Şifreler eşleşmiyor</p>
             )}
@@ -205,6 +186,7 @@ const RegisterForm = () => {
         </div>
       </div>
 
+      {/* Toast Container */}
       <ToastContainer />
     </div>
   );

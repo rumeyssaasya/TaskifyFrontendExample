@@ -221,10 +221,12 @@ function ProfilePage() {
                       setTempProfileImage(`${backendBaseUrl}/images/femaleIcon.png`);
                     } else if (profile.gender === 'MALE') {
                       setTempProfileImage(`${backendBaseUrl}/images/maleIcon.png`);
+                    } else {
+                      setTempProfileImage(`${backendBaseUrl}/images/default.png`);
                     }
                   }}
                 >
-                 İkon kullan
+                  Cinsiyet İkonunu Kullan
                 </button>
               </div>
             </div>

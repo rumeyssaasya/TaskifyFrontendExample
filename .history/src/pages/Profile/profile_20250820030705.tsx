@@ -6,6 +6,8 @@ import type { UserInfo } from '../../types';
 import './profile.css';
 import { useNavigate } from "react-router-dom";
 
+
+
 function ProfilePage() {
   const [profile, setProfile] = useState<UserInfo | null>(null);
   const [editMode, setEditMode] = useState(false);
@@ -221,10 +223,12 @@ function ProfilePage() {
                       setTempProfileImage(`${backendBaseUrl}/images/femaleIcon.png`);
                     } else if (profile.gender === 'MALE') {
                       setTempProfileImage(`${backendBaseUrl}/images/maleIcon.png`);
+                    } else {
+                      setTempProfileImage(`${backendBaseUrl}/images/default.png`);
                     }
                   }}
                 >
-                 İkon kullan
+                  Cinsiyet İkonunu Kullan
                 </button>
               </div>
             </div>

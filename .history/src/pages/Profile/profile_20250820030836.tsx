@@ -224,7 +224,7 @@ function ProfilePage() {
                     }
                   }}
                 >
-                 İkon kullan
+                  Cinsiyet İkonunu Kullan
                 </button>
               </div>
             </div>

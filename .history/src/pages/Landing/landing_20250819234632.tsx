@@ -74,7 +74,6 @@ const LandingPage = () => {
             <li><Link to="/auth/login">Giriş Yap</Link></li>
             <li><Link to="/auth/register">Kayıt Ol</Link></li>
             <li><a href="mailto:taskifyRMR@gmail.com">İletişim</a></li>
-
           </ul>
         </nav>
         <nav>

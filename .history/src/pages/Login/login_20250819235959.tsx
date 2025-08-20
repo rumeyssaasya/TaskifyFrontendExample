@@ -2,13 +2,10 @@ import React, { useState } from "react";
 import api from "../../api/axios";
 import { useNavigate } from "react-router-dom";
 import "./login.css";
-import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const LoginForm = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [showPassword, setShowPassword] = useState(false);
-
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [showForgotPasswordModal, setShowForgotPasswordModal] = useState(false);
@@ -67,9 +64,7 @@ const LoginForm = () => {
         } else {
           setError("Bilinmeyen bir hata oluştu.");
         }
-    } finally {
-      setIsSendingMail(false);
-    }
+      }
   };
 
   return (
@@ -86,7 +81,6 @@ const LoginForm = () => {
           <div className="form-group">
             <label className="form-label">Kullanıcı Adı</label>
             <input
-              placeholder="Kullanıcı adınızı girin"
               type="text"
               className="form-input"
               value={username}
@@ -97,26 +91,17 @@ const LoginForm = () => {
             />
           </div>
 
-          <div className="form-group password-group">
+          <div className="form-group">
             <label className="form-label">Şifre</label>
-            <div className="password-input-wrapper">
-              <input
-                placeholder="Şifrenizi girin"
-                type={showPassword ? "text" : "password"}
-                className="form-input"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-                autoComplete="current-password"
-                disabled={isLoading}
-              />
-              <span
-                className="password-toggle-icon"
-                onClick={() => setShowPassword(!showPassword)}
-              >
-                {showPassword ? <FaEyeSlash /> : <FaEye />}
-              </span>
-            </div>
+            <input
+              type="password"
+              className="form-input"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+              autoComplete="current-password"
+              disabled={isLoading}
+            />
             <div className="forgot-password-container">
               <button 
                 type="button"

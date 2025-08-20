@@ -94,7 +94,7 @@
 
 .profile-main {
     display: flex;
-    margin-left: 15%;
+    margin-left: 25%;
 
     gap: 32px;
     flex-wrap: wrap;
@@ -212,7 +212,7 @@
 
     .profile-image-wrapper,
     .profile-info {
-        max-width: 70%;
+        max-width: 100%;
         flex: unset;
     }
 
@@ -301,7 +301,6 @@
 }
 
 .image-options-grid {
-    margin-left: 15%;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 10px;
