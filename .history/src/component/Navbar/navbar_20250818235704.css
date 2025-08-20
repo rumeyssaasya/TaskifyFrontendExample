@@ -1,0 +1,238 @@
+.navbar {
+    background: var(--primary-gradient);
+    padding: 0 2rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    width: 100%;
+    height: var(--navbar-height);
+    display: flex;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+.navbar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1800px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+/* NAVBAR MARKA */
+.navbar-brand {
+    font-size: 1.8rem;
+    color: var(--white);
+    text-decoration: none;
+    font-weight: bold;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 200px;
+}
+
+/* NAVBAR MENÜ */
+.navbar-menu {
+    display: flex;
+    gap: 1.5rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    align-items: center;
+}
+
+.navbar-item {
+    font-size: 1rem;
+    color: var(--white);
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.navbar-item:hover {
+    background: var(--hover-bg);
+    transform: translateY(-2px);
+}
+
+/* PROFİL BÖLÜMÜ */
+.profile-section {
+    position: relative;
+    list-style-type: none;
+}
+
+.profile-container {
+    position: relative;
+}
+
+.profile-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: var(--white);
+    padding: 8px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.profile-btn:hover {
+    background: var(--hover-bg);
+}
+
+.profile-avatar {
+    width: 36px;
+    height: 36px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 16px;
+    color: var(--white);
+}
+
+/* SAYFA İÇERİK ALANI */
+.main-content {
+    margin-top: var(--navbar-height);
+    padding: 2rem;
+    min-height: calc(100vh - var(--navbar-height));
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* RESPONSIVE TASARIM */
+@media (max-width: 992px) {
+    .navbar {
+        padding: 0 1.5rem;
+    }
+
+    .navbar-brand {
+        font-size: 1.6rem;
+        max-width: 160px;
+    }
+
+    .navbar-menu {
+        gap: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        height: var(--navbar-mobile-height);
+        padding: 0 1rem;
+    }
+
+    .main-content {
+        margin-top: var(--navbar-mobile-height);
+        min-height: calc(100vh - var(--navbar-mobile-height));
+        padding: 1.5rem;
+    }
+
+    .navbar-brand {
+        font-size: 1.4rem;
+        max-width: 140px;
+    }
+
+    .navbar-item {
+        padding: 0.5rem 0.8rem;
+        font-size: 0.9rem;
+    }
+
+    .profile-btn {
+        padding: 6px 12px;
+    }
+
+    .profile-avatar {
+        width: 32px;
+        height: 32px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 576px) {
+    .navbar {
+        padding: 0 0.8rem;
+    }
+
+    .main-content {
+        padding: 1rem;
+    }
+
+    .navbar-brand {
+        font-size: 1.2rem;
+        max-width: 120px;
+    }
+
+    .navbar-menu {
+        gap: 0.5rem;
+    }
+
+    .navbar-item {
+        padding: 0.4rem 0.6rem;
+        font-size: 0.85rem;
+    }
+
+    .profile-btn {
+        padding: 5px 10px;
+    }
+
+    .profile-avatar {
+        width: 28px;
+        height: 28px;
+    }
+}
+
+/* MOBILE MENÜ TOGGLE (Opsiyonel) */
+.mobile-menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--white);
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+@media (max-width: 480px) {
+    .mobile-menu-toggle {
+        display: block;
+    }
+
+    .navbar-menu {
+        position: fixed;
+        top: var(--navbar-mobile-height);
+        left: 0;
+        right: 0;
+        background: var(--primary-gradient);
+        flex-direction: column;
+        gap: 0;
+        padding: 1rem 0;
+        transform: translateY(-100%);
+        transition: transform 0.3s ease;
+        z-index: 999;
+    }
+
+    .navbar-menu.active {
+        transform: translateY(0);
+    }
+
+    .navbar-item {
+        width: 100%;
+        text-align: center;
+        padding: 1rem;
+        border-radius: 0;
+    }
+}

@@ -1,0 +1,73 @@
+/* Container: dikey scroll ve snap aktif */
+.landing-container {
+    height: 100vh;
+    /* Viewport yüksekliği */
+    overflow-y: scroll;
+    /* Dikey scroll */
+    scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
+    /* Yumuşak scroll */
+}
+
+/* Her blok tam ekran ve snap yapılacak */
+.section-block {
+    scroll-snap-align: start;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    box-sizing: border-box;
+}
+
+/* İçerik: resim + yazı yan yana, responsive */
+.content-wrapper {
+    display: flex;
+    max-width: 1200px;
+    width: 100%;
+    gap: 60px;
+    align-items: center;
+}
+
+.content-wrapper img {
+    width: 50%;
+    max-width: 600px;
+    border-radius: 12px;
+    object-fit: cover;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+}
+
+.content-wrapper .text-content {
+    flex: 1;
+    color: #222;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.content-wrapper .text-content h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+.content-wrapper .text-content p {
+    font-size: 1.125rem;
+    line-height: 1.6;
+    color: #555;
+}
+
+/* Responsive düzen */
+@media (max-width: 900px) {
+    .content-wrapper {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .content-wrapper img {
+        width: 80%;
+    }
+
+    .content-wrapper .text-content {
+        width: 100%;
+    }
+}

@@ -1,0 +1,129 @@
+/* -- Renkler ve Temel Stiller -- */
+:root {
+    --primary-color: #007bff;
+    --text-color-dark: #343a40;
+    --text-color-light: #6c757d;
+    --background-color: #f8f9fa;
+    --card-background: #ffffff;
+    --shadow-light: rgba(0, 0, 0, 0.05);
+    --shadow-medium: rgba(0, 0, 0, 0.1);
+    --shadow-heavy: rgba(0, 0, 0, 0.2);
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color-dark);
+    line-height: 1.6;
+}
+
+/* -- Yatay Kaydırma Bölümü -- */
+.features-horizontal-section {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    padding: 60px 0;
+    gap: 32px;
+    /* Kaydırma çubuğunu gizle */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.features-horizontal-section::-webkit-scrollbar {
+    display: none;
+}
+
+/* -- Her bir özellik bloğu -- */
+.feature-block {
+    display: flex;
+    flex-direction: column;
+    flex: 0 0 80vw;
+    /* Görünümde her zaman bir kartın büyük bir kısmı görünsün */
+    scroll-snap-align: center;
+    padding: 3rem 2rem;
+    background-color: var(--card-background);
+    border-radius: 20px;
+    box-shadow: 0 10px 30px var(--shadow-light);
+    transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transform: scale(0.9);
+    opacity: 0.7;
+    user-select: none;
+    min-height: 500px;
+    /* Kartlara sabit bir yükseklik vererek düzeni koruma */
+}
+
+/* Aktif olan kart için animasyonlu büyütme ve gölge */
+.feature-block.active {
+    transform: scale(1);
+    opacity: 1;
+    box-shadow: 0 15px 40px var(--shadow-medium);
+}
+
+/* İçerik Hizalama ve Stilleri */
+.feature-image {
+    flex-shrink: 0;
+    /* Küçülmesini engelle */
+    width: 100%;
+    height: 250px;
+    overflow: hidden;
+    border-radius: 12px;
+    margin-bottom: 24px;
+}
+
+.feature-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease-in-out;
+}
+
+.feature-block.active .feature-image img {
+    transform: scale(1.05);
+}
+
+.feature-text {
+    flex-grow: 1;
+    text-align: center;
+}
+
+.feature-text h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 12px;
+    letter-spacing: -0.5px;
+}
+
+.feature-text p {
+    font-size: 1.1rem;
+    color: var(--text-color-light);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* -- Responsive Tasarım -- */
+@media (max-width: 768px) {
+    .features-horizontal-section {
+        padding: 30px 10px;
+    }
+
+    .feature-block {
+        flex: 0 0 90vw;
+        padding: 2rem 1rem;
+        min-height: 400px;
+    }
+
+    .feature-image {
+        height: 200px;
+        margin-bottom: 16px;
+    }
+
+    .feature-text h2 {
+        font-size: 2rem;
+    }
+
+    .feature-text p {
+        font-size: 1rem;
+    }
+}

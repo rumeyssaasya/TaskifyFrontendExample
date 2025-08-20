@@ -1,0 +1,296 @@
+/* Tasks Page Container */
+.tasks-page {
+    min-height: 100vh;
+    background: #f5f7fa;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Header Styles */
+.tasks-header {
+    background: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    padding: 0.5rem 0;
+}
+
+.tasks-title-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.tasks-title {
+    margin: 0;
+    color: #2c3e50;
+    font-size: 1.8rem;
+    font-weight: 600;
+}
+
+/* Add Task Button */
+.add-task-btn {
+    background: #5c6bc0;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.add-task-btn:hover {
+    background: #3949ab;
+    transform: scale(1.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.add-task-btn.close {
+    background: #e53935;
+    transform: rotate(45deg);
+}
+
+/* Main Content Area */
+.tasks-content {
+    max-width: 1400px;
+    margin: 2rem auto;
+    padding: 0 2rem;
+}
+
+/* Kanban Board Styles */
+.kanban-view {
+    display: flex;
+    gap: 1.5rem;
+    overflow-x: auto;
+    padding: 1rem 0;
+    scrollbar-width: thin;
+    scrollbar-color: #c1c1c1 #f5f5f5;
+}
+
+.kanban-view::-webkit-scrollbar {
+    height: 8px;
+}
+
+.kanban-view::-webkit-scrollbar-thumb {
+    background-color: #c1c1c1;
+    border-radius: 4px;
+}
+
+/* Status Columns */
+.status-column {
+    flex: 0 0 320px;
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 1.25rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.status-column.drag-over {
+    background: rgba(92, 107, 192, 0.05);
+    border: 2px dashed #5c6bc0;
+}
+
+.column-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.25rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.column-title {
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #37474f;
+}
+
+.task-count {
+    background: #e0e0e0;
+    color: #424242;
+    border-radius: 12px;
+    padding: 0.25rem 0.75rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+/* Task Cards */
+.task-card {
+    background: white;
+    border-radius: 8px;
+    padding: 1.25rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+    cursor: grab;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    border-left: 4px solid #5c6bc0;
+    position: relative;
+    overflow: hidden;
+}
+
+.task-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.task-card.dragging {
+    opacity: 0.5;
+    transform: rotate(3deg);
+    cursor: grabbing;
+}
+
+.task-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 0.75rem;
+}
+
+.task-title {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #263238;
+    flex: 1;
+}
+
+.task-actions {
+    display: flex;
+    gap: 0.5rem;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.task-card:hover .task-actions {
+    opacity: 1;
+}
+
+.edit-task-btn,
+.delete-task-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.25rem;
+    border-radius: 4px;
+    font-size: 1rem;
+    color: #757575;
+    transition: all 0.2s ease;
+}
+
+.edit-task-btn:hover {
+    color: #5c6bc0;
+    background: rgba(92, 107, 192, 0.1);
+}
+
+.delete-task-btn:hover {
+    color: #e53935;
+    background: rgba(229, 57, 53, 0.1);
+}
+
+.task-description {
+    margin: 0.75rem 0;
+    color: #616161;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+/* Status Specific Styles */
+.status-column.todo .task-card {
+    border-left-color: #ffa726;
+}
+
+.status-column.in-progress .task-card {
+    border-left-color: #29b6f6;
+}
+
+.status-column.done .task-card {
+    border-left-color: #66bb6a;
+}
+
+/* Status Selector Dropdown */
+.status-selector {
+    width: 100%;
+    padding: 0.5rem;
+    margin-top: 0.75rem;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    background: white;
+    font-size: 0.9rem;
+    color: #424242;
+    cursor: pointer;
+    transition: border-color 0.2s ease;
+}
+
+.status-selector:hover {
+    border-color: #9e9e9e;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .status-column {
+        flex: 0 0 280px;
+    }
+}
+
+@media (max-width: 768px) {
+    .tasks-title-section {
+        padding: 0 1.5rem;
+    }
+
+    .tasks-content {
+        padding: 0 1.5rem;
+    }
+
+    .status-column {
+        flex: 0 0 260px;
+    }
+}
+
+@media (max-width: 480px) {
+    .tasks-title {
+        font-size: 1.5rem;
+    }
+
+    .add-task-btn {
+        width: 42px;
+        height: 42px;
+        font-size: 1.3rem;
+    }
+
+    .status-column {
+        flex: 0 0 220px;
+        padding: 1rem;
+    }
+
+    .task-card {
+        padding: 1rem;
+    }
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.task-card {
+    animation: fadeIn 0.3s ease-out forwards;
+}
